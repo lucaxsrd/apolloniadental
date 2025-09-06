@@ -9,7 +9,7 @@ services:
       - .:/app
     depends_on:
       - mongodb
-    command: "node server.js"
+    command: "node app/server.js"
   mongodb:
     container_name: mongodb
     image: mongo:latest

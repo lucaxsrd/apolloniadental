@@ -1,89 +1,50 @@
 ## Project Apollonia Dental
 
-O projeto Apollonia Dental, é um projeto guiado disponibilizado pela Coursera.
-Com ele estou exercitando e praticando, toda o aprendizado adquirido durante o curso de back-end desenvolvido pela Microsoft.
-
-## A aplicação
-É uma API RESTful, desenvolvida em Node.js e Express, com persistência de dados no MongoDB, tudo orquestrado com Docker.
-
-Seguindo a lógica esse é o primeiro passo da aplicação, entretanto notei que fui precipitado e não segui algumas das solicitações que me foi passada como por exemplo, a organização do projeto pelos controllers (apenas criei a pasta e acabei por não utiliza-la).
+The Apollonia Dental this is a guided project from Coursera, a REST API created by me using Node.js, Express, and MongoDB (Mongoose). Through this exercise i've praticed my skills gained from the "Back-End Developer" course, offered by Microsoft on Coursera.
 
 
-## Ferramentas usadas nesse projeto
+## Main Structure
 
-. Node.js: 
-    Ambiente de execução JavaScript.
+* **Node.js + Express:** Responsible for creating the server and defining the HTTP routes.
+* **MongoDB + Mongoose:** A NoSQL database used to store all employee and department data, with schemas defined to ensure data structure.
+* **Docker + Docker Compose:** Aids in the execution and deployment of services (API and database) within isolated containers.
 
-. Express: 
-    Framework web para Node.js.
+## Functions
 
-. Mongoose: 
-    Modelagem de objetos para MongoDB.
+* **Departments**
+    * Create new departments
+    * List all departments
+    * Search for departments by ID
+* **Employees**
+    * Create new employees, synced with existing departments
+    * List all employees, showing the department name (not just the ID)
+    * Update and remove employees
+    * List employees from a specific department
 
-. MongoDB: 
-    Banco de dados NoSQL.
+## Main Routes
 
-. Docker & Docker Compose: 
-    Para empacotar e executar a aplicação e o banco de dados em ambientes isolados e consistentes.
+* **GET /api/departments:** Lists all departments.
+* **GET /api/departments/:id:** Searches for a department by ID.
+* **POST /api/departments:** Creates a new department.
+* **GET /api/employees:** Lists all employees (including the department name).
+* **POST /api/employees:** Creates a new employee.
+* **PUT /api/employees/:id:** Updates an employee.
+* **DELETE /api/employees/:id:** Removes an employee.
 
-## Estrutura do Projeto
+## Data Flow
 
-. /models: 
-    Contém os schemas do Mongoose para as entidades Employee e Department.
+When creating an employee, the department's ID is sent to the database. The system validates the department ID before saving the employee. When fetching employees, the system returns the department's name using Mongoose's `populate` feature.
 
-. /database.js: 
-    Lógica para a conexão com o MongoDB.
+## Deploy
 
-. /server.js: 
-    O arquivo principal que define o servidor Express e as rotas.
+With Docker Compose, you can bring up both the MongoDB database and the Node.js API with a single command (`docker-compose up`). The project is also easy to version and share on GitHub.
 
-. docker-compose.yml: 
-    Orquestra os serviços da aplicação e do banco de dados.
+## Summary
 
-. Dockerfile: 
-    Define a imagem Docker da aplicação Node.js.
+I've built a modern, scalable, and organized API. It's capable of managing employees and departments, with data validation and a ready-to-use database integration for deployment in any environment with Docker.
 
 
-## Endpoints da API
+**Version: 0.0.2** *(final)*
 
-Rotas de gerenciamento: 
 
-Funcionários (/api/employees)
-. GET /api/employees
-
-Retorna a lista de todos os funcionários.
-
-. POST /api/employees
-
-Cria um novo registro de funcionário.
-
-. Corpo da requisição (JSON):
-
-{
-  "name": "Nome",
-  "surname": "Sobrenome",
-  "department": "ID_DO_DEPARTAMENTO"
-}
-
-. PUT /api/employees/:id
-
-Atualiza um registro de funcionário pelo ID.
-
-Corpo da requisição (JSON): Os campos são opcionais.
-
-{
-  "name": "Novo Nome",
-  "surname": "Novo Sobrenome",
-  "department": "NOVO_ID_DO_DEPARTAMENTO"
-}
-
-. DELETE /api/employees/:id
-
-Deleta um registro de funcionário pelo ID.
-
-Departamentos (/api/departments)
-GET /api/departments/:id
-
-Retorna os detalhes de um único departamento pelo seu ID.
-
-ver. 0.0.1
+// esse projeto é meu primeiro, digo, realizando-o de forma "profissional", precisei muito de ajuda e realizei muitos testes. Foram dificeis 2 dias resolvendo isso aqui. Quis colocar tudo em inglês para treinar e me acostumar com o ambiente profissional que almejo. Pedi a IA para corrigir o inglês, infelizmente ainda não tenho total aptidão, como eu disse tudo nesse projeto foi e será um enorme aprendizado para mim. Agradeço a oportunidade.

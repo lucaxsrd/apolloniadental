@@ -8,6 +8,11 @@ const employeeSchema = new mongoose.Schema({
   surname: { 
     type: String, 
     required: true 
+  },
+  department: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Department',
+    required: true
   }
 });
 
